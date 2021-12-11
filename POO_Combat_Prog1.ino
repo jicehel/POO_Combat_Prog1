@@ -36,63 +36,35 @@ void loop() {
               gb.display.clear();
               tour++;
               gb.display.setCursor(1, 1);
-              // gb.display.setColor(YELLOW);
-              gb.display.print("**** TOUR ");
-              gb.display.print(tour); 
-              gb.display.println(" ****");
-              gb.display.println(" ");
+              gb.display.printf("**** tour %d ****\n\n", tour);
               hero1.attack(hero2);
               if (hero2.isAlive()) {
-                 gb.display.println(" ");
-                 gb.display.print("Il reste ");
-                 gb.display.print(hero2.getHealtPoints());
-                 gb.display.print(" points de vie a ");
-                 gb.display.print(hero2.getName());
+                 gb.display.printf("\nIl reste %d  points de vie a %s\n\n", hero2.getHealtPoints(), hero2.getName());
                  delay(TimeBeforeNextScreen);                 
                  gb.display.clear();
                  gb.display.setCursor(1, 1);
-                 // gb.display.setColor(YELLOW);
-                 gb.display.print("**** TOUR ");
-                 gb.display.print(tour); 
-                 gb.display.println(" ****");
-                 gb.display.println(" ");
+                 gb.display.printf("**** tour %d ****\n\n", tour);
                  hero2.attack(hero1);
                  if (!hero1.isAlive()) {
                     delay(TimeBeforeNextScreen);
                     gb.display.clear();
                     gb.display.setCursor(1, 1);
-                    gb.display.print("**** TOUR ");
-                    gb.display.print(tour); 
-                    gb.display.println(" ****");
-                    gb.display.println(" ");
-                    gb.display.print(hero1.getName());
-                    gb.display.println(" est mort !");
-                    gb.display.println(" ");
+                    gb.display.printf("**** tour %d ****\n\n", tour);
+                    gb.display.printf("%s  est mort !\n\n", hero1.getName());
                     game.gameStatus=GAMEOVER;
-                    gb.display.println("  APPUYEZ SUR  <A>");
-                    gb.display.println("   POUR COMMENCER");
+                    gb.display.printf("  APPUYEZ SUR  <A>\n   POUR COMMENCER");
                  } else {
-                    gb.display.println(" ");
-                    gb.display.print("Il reste ");
-                    gb.display.print(hero1.getHealtPoints());
-                    gb.display.print(" points de vie a ");
-                    gb.display.print(hero1.getName());
+                    gb.display.printf("\nIl reste %d points de vie a %s\n\n",hero1.getHealtPoints(),hero1.getName());
                     delay(TimeBeforeNextScreen);
                  }
               } else {
                  delay(TimeBeforeNextScreen);
                  gb.display.clear();
                  gb.display.setCursor(1, 1);
-                 gb.display.print("**** TOUR ");
-                 gb.display.print(tour); 
-                 gb.display.println(" ****");
-                 gb.display.println(" ");
-                 gb.display.print(hero2.getName());
-                 gb.display.println(" est mort !");
-                 gb.display.println(" ");
+                 gb.display.printf("**** tour %d ****\n\n", tour);
+                 gb.display.printf("%s  est mort !\n\n", hero2.getName());
                  game.gameStatus=GAMEOVER;
-                 gb.display.println("  APPUYEZ SUR  <A>");
-                 gb.display.println("   POUR COMMENCER");
+                 gb.display.printf("  APPUYEZ SUR  <A>\n   POUR COMMENCER");
               }
 
          break; 
@@ -101,8 +73,8 @@ void loop() {
          case GAMEOVER:
               if(gb.buttons.pressed(BUTTON_A)){
                   tour = 0;
-                  hero1.setHealtPoints(Nb_HealthPoints);
-                  hero2.setHealtPoints(Nb_HealthPoints);
+                  hero1.setHealtPoints(NB_HEALTHPOINTS);
+                  hero2.setHealtPoints(NB_HEALTHPOINTS);
                   game.gameStatus=ROUND;
               }
          break; 
